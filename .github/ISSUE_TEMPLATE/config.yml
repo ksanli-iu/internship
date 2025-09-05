@@ -1,0 +1,59 @@
+name: Pull Request
+description: Use this template when opening a pull request
+title: "[PR]: <short summary>"
+labels: ["pull request"]
+assignees:
+  - ksanli-iu
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Summary
+        Provide a short description of the changes in this PR.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Explain what you have added, changed, or fixed.
+      placeholder: |
+        - Short bullet points of what this PR does
+
+  - type: input
+    id: related-issue
+    attributes:
+      label: Related Issue
+      description: Link any related issue(s).
+      placeholder: "#<issue-number>"
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Models / Features Added or Updated
+
+  - type: textarea
+    id: new-models
+    attributes:
+      label: Models / Features
+      description: Describe any new models, fields, methods, or features.
+      placeholder: |
+        ### <Model or Feature Name>
+        **Detail**
+        Describe purpose and usage.
+
+        **Fields**
+        - field_name: FieldType
+
+        **Methods / Properties**
+        - .method_name() → what it does
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Confirm before submitting
+      options:
+        - label: I have tested these changes locally
+        - label: I have updated documentation if needed
+        - label: I have linked all related issues
