@@ -1,4 +1,3 @@
-```html
 {% extends "base.html" %}
 {% load static %}
 
@@ -11,9 +10,9 @@
         <div class="progress-step active" data-title="Request"></div>
         <div class="progress-step" data-title="Confirmation"></div>
     </div>
-    
+
     <h1>Request Details</h1>
-    
+
     <div class="summary-box" id="personalSummary">
         <h3>Personal Information Summary</h3>
         <div id="summary-content">
@@ -26,19 +25,19 @@
             {% endif %}
         </div>
     </div>
-    
+
     <form method="POST" action="{% url 'message:step3' %}">
         {% csrf_token %}
-        
+
         {% if form.errors %}
         <div class="alert alert-danger">
             Please correct the errors below.
         </div>
         {% endif %}
-        
+
         <div class="form-group">
             <label for="id_organization_type">Organization Type *</label>
-            <select id="id_organization_type" name="organization_type" 
+            <select id="id_organization_type" name="organization_type"
                     class="form-control {% if form.organization_type.errors %}is-invalid{% endif %}" required>
                 <option value="">Select organization type</option>
                 <option value="company" {% if form.organization_type.value == "company" %}selected{% endif %}>Company</option>
@@ -51,10 +50,10 @@
             <div class="invalid-feedback">{{ form.organization_type.errors }}</div>
             {% endif %}
         </div>
-        
+
         <div class="form-group">
             <label for="id_related_request">Related Request</label>
-            <select id="id_related_request" name="related_request" 
+            <select id="id_related_request" name="related_request"
                     class="form-control {% if form.related_request.errors %}is-invalid{% endif %}">
                 <option value="">Select related request (optional)</option>
                 <option value="technical_support" {% if form.related_request.value == "technical_support" %}selected{% endif %}>Technical Support</option>
@@ -66,10 +65,10 @@
             <div class="invalid-feedback">{{ form.related_request.errors }}</div>
             {% endif %}
         </div>
-        
+
         <div class="form-group">
             <label for="id_subject">Subject *</label>
-            <input type="text" id="id_subject" name="subject" 
+            <input type="text" id="id_subject" name="subject"
                    value="{{ form.subject.value|default:'' }}"
                    class="form-control {% if form.subject.errors %}is-invalid{% endif %}"
                    placeholder="Brief subject of your request" required>
@@ -77,7 +76,7 @@
             <div class="invalid-feedback">{{ form.subject.errors }}</div>
             {% endif %}
         </div>
-        
+
         <div class="form-group">
             <label for="id_content">Request Details *</label>
             <textarea id="id_content" name="content" rows="5"
@@ -87,7 +86,7 @@
             <div class="invalid-feedback">{{ form.content.errors }}</div>
             {% endif %}
         </div>
-        
+
         <div class="form-actions">
             <a href="{% url 'message:step1' %}" class="btn-back">← Back</a>
             <button type="submit" class="btn-next">Submit Request →</button>
@@ -95,6 +94,3 @@
     </form>
 </div>
 {% endblock %}
-
-
-
