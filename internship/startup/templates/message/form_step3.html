@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Confirmation - Step 3/3{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="progress-bar">
+        <div class="progress-step active" data-title="Personal"></div>
+        <div class="progress-step active" data-title="Request"></div>
+        <div class="progress-step active" data-title="Confirmation"></div>
+    </div>
+
+    <div class="confirmation-container">
+        <div class="confirmation-icon">✓</div>
+        <h1>Request Submitted Successfully!</h1>
+
+        <div class="confirmation-message">
+            <p>Thank you for your submission, {{ request.session.form_data.first_name }}!</p>
+            <p>Your request has been received and will be processed shortly.</p>
+        </div>
+
+        <div class="request-summary">
+            <h3>Request Summary</h3>
+            <div id="request-details">
+                <p><strong>Subject:</strong> {{ form_data.subject }}</p>
+                <p><strong>Service Type:</strong> {{ request.session.form_data.service }}</p>
+                <p><strong>Organization:</strong> {{ form_data.organization_type }}</p>
+                <p><strong>Submitted:</strong> {% now "F j, Y, g:i a" %}</p>
+            </div>
+        </div>
+
+        <div class="next-steps">
+            <h3>What happens next?</h3>
+            <ul>
+                <li>You will receive a confirmation email within 24 hours</li>
+                <li>Our team will review your request</li>
+                <li>We'll contact you for any additional information needed</li>
+                <li>Expected response time: 2-3 business days</li>
+            </ul>
+        </div>
+
+        <div class="confirmation-actions">
+            <a href="{% url 'message:step1' %}" class="btn-primary">Submit Another Request</a>
+            <button class="btn-secondary">View Request Status</button>
+        </div>
+
+        <div class="reference-number">
+            <p>Reference: <strong>{{ ref_number }}</strong></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

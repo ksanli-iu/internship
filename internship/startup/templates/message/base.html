@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Internship Form{% endblock %}</title>
+    
+    <!-- Static CSS dosyası -->
+    <link rel="stylesheet" href="{% static 'message/css/styles.css' %}">
+    
+    <style>
+        /* Bizim form stilimizle uyumlu ek stiller */
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+        }
+        
+        .invalid-feedback {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+            display: block;
+        }
+        
+        .is-invalid {
+            border-color: #dc3545 !important;
+        }
+
+        /* Container stilini koru */
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            margin: 40px auto;
+        }
+
+        /* Body background gradient */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main content -->
+    <main>
+        {% block content %}
+        <!-- Buraya diğer template'lerin içeriği gelecek -->
+        {% endblock %}
+    </main>
+
+    <!-- JavaScript dosyaları -->
+    <script src="{% static 'message/js/storage.js' %}"></script>
+    <script src="{% static 'message/js/navigation.js' %}"></script>
+    
+    <!-- Django CSRF token for AJAX -->
+    <script>
+        // Django CSRF token for AJAX requests
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+    </script>
+</body>
+</html>
